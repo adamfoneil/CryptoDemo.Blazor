@@ -4,5 +4,12 @@
 <h3>CoinApi</h3>
 
 @code {
+    IEnumerable<SymbolInfo> symbols;
 
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        symbols = await Client.GetSymbolsAsync("binance_");
+    }
 }

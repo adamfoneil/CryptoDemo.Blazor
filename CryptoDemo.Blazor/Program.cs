@@ -1,4 +1,3 @@
-using CryptoDemo.Blazor.Data;
 using CryptoDemo.Blazor.Models;
 using CryptoDemo.Services;
 
@@ -7,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.Configure<CoinApiOptions>(builder.Configuration.GetSection("CoinApiOptions"));
 builder.Services.AddSingleton<CoinApiClient>();
