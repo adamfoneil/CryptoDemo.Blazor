@@ -1,0 +1,22 @@
+﻿@{
+    var appendClass = (Attributes?.ContainsKey("class") ?? false) ? Attributes["class"] : string.Empty;
+}
+
+<div class="d-flex align-items-center @appendClass">
+    <label>@(Label):</label>
+    <div>
+        @ChildContent
+    </div>
+</div>
+
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> Attributes { get; set; }
+
+    [Parameter]
+    public string? Label { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

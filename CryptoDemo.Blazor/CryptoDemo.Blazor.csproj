@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Radzen.Blazor" Version="3.13.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CryptoDemo.Services\CryptoDemo.Services.csproj" />
   </ItemGroup>
 
