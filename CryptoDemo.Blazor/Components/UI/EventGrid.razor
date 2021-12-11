@@ -1,0 +1,73 @@
+﻿@inject DataContext Data
+
+<ErrorMessage @ref="error" />
+
+	<GridInsertButton TItem="Event" OnCreateItem="@(() => new Event())" Grid="grid">
+		<Field Label="Search:">
+			<RadzenTextBox @bind-Value="@gridHelper.Query.Search" Change="gridHelper.RefreshAsync"/>
+		</Field>
+	</GridInsertButton>
+
+	<RadzenGrid TItem="Event" @ref="grid" 
+		Data="@gridHelper.Data"
+		RowCreate="gridHelper.SaveRowAsync" RowUpdate="gridHelper.SaveRowAsync">
+
+		<Columns>
+			<RadzenGridColumn TItem="Event" Title="Venue" Property="VenueId">
+				<Template Context="row">
+					<span>@row.VenueName</span>
+				</Template>
+				<EditTemplate Context="row">
+					<RadzenDropDown @bind-Value="row.VenueId" Data="allVenues" ValueProperty="Id" TextProperty="Name"/>
+				</EditTemplate>
+			</RadzenGridColumn>
+
+			<RadzenGridColumn TItem="Event" Title="Artists" Property="Artist">
+				<Template Context="row">
+					<span>@row.Artist</span>
+				</Template>
+				<EditTemplate Context="row">
+					<RadzenTextBox @bind-Value="row.Artist"/>
+				</EditTemplate>
+			</RadzenGridColumn>
+
+			<RadzenGridColumn TItem="Event" Title="Date" Property="Date">
+				<Template Context="row">
+					<span>@row.Date.ToString("ddd M/d/yy")</span>
+				</Template>
+				<EditTemplate Context="row">
+					<RadzenDatePicker @bind-Value="row.Date"/>
+				</EditTemplate>
+			</RadzenGridColumn>
+
+			<RadzenGridColumn TItem="Event" Title="Seats Left" Property="SeatsRemaining">
+				<Template Context="row">
+					<span>@row.SeatsRemaining</span>
+				</Template>
+				<EditTemplate Context="row">
+					<RadzenNumeric @bind-Value="row.SeatsRemaining"/>
+				</EditTemplate>
+			</RadzenGridColumn>
+
+			<GridControls Grid="grid" TItem="Event" DeleteRow="@(async (row) => await gridHelper.DeleteRowAsync(row))"/>
+		</Columns>
+	</RadzenGrid>
+
+
+@code {
+	ErrorMessage error;
+	RadzenGrid<Event> grid;
+	EventGridHelper gridHelper;
+	IEnumerable<Venue> allVenues;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();						
+
+		gridHelper = new EventGridHelper(Data);
+		gridHelper.OnError += (sender, exc) => error.Message = exc.Message;
+		await gridHelper.RefreshAsync();				
+
+		allVenues = await Data.QueryAsync(new ListVenues());
+	}
+}

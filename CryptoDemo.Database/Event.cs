@@ -21,5 +21,8 @@ namespace CryptoDemo.Database
         public decimal TicketPrice { get; set; }
 
         public int SeatsRemaining { get; set; }
+
+        [NotMapped]
+        public string VenueName { get; set; }
     }
 }

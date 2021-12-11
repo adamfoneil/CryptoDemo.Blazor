@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AO.Dapper.Repository.SqlServer" Version="1.2.1" />
+    <PackageReference Include="AO.Dapper.Repository.SqlServer" Version="1.2.2" />
+    <PackageReference Include="Dapper.QX" Version="1.0.28" />
     <PackageReference Include="Radzen.Blazor" Version="3.13.5" />
   </ItemGroup>
 

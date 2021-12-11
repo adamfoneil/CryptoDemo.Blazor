@@ -8,5 +8,7 @@ namespace CryptoDemo.Database
         [Key]
         [MaxLength(50)]        
         public string Name { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }

@@ -1,9 +1,63 @@
 ﻿@page "/Events"
 @inject DataContext Data
 
+<ErrorMessage @ref="error" />
 
-<h3>Events</h3>
+<div class="d-flex">
+    <div style="width:35%" class="mr-2">
+		<h3>Venues</h3>
+
+		<GridInsertButton TItem="Venue" OnCreateItem="@(() => new Venue() { IsActive = true })" Grid="grid">			
+			<ActiveFilter Change="@(async (val) => { gridHelper.Query.IsActive = val; await gridHelper.RefreshAsync(); })"/>
+		</GridInsertButton>
+
+        <RadzenGrid TItem="Venue" @ref="grid" 
+			Data="@gridHelper.Data" 
+			RowCreate="gridHelper.SaveRowAsync" RowUpdate="gridHelper.SaveRowAsync">
+			<Columns>
+				
+				<RadzenGridColumn TItem="Venue" Title="Name" Property="Name">
+					<Template Context="row">
+						<span>@row.Name</span>
+					</Template>
+					<EditTemplate Context="row">
+						<RadzenTextBox @bind-Value="row.Name"/>
+					</EditTemplate>
+				</RadzenGridColumn>
+
+				<RadzenGridColumn TItem="Venue" Title="Active">
+					<Template Context="row">
+						<span>@row.IsActive</span>
+					</Template>
+					<EditTemplate Context="row">
+						<RadzenCheckBox @bind-Value="@row.IsActive"/>
+					</EditTemplate>
+				</RadzenGridColumn>
+
+				<GridControls TItem="Venue" Grid="grid" DeleteRow="@(async (row) => await gridHelper.DeleteRowAsync(row))"/>
+
+			</Columns>
+		</RadzenGrid>
+
+    </div>
+
+    <div style="width:65%" class="ml-2">		
+		<h3>Events</h3>				
+		<EventGrid/>
+    </div>
+</div>
 
 @code {
+	ErrorMessage error;
+	RadzenGrid<Venue> grid;	
+	VenueGridHelper gridHelper;		
 
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();		
+
+		gridHelper = new VenueGridHelper(Data);
+		gridHelper.OnError += (sender, exc) => error.Message = exc.Message;
+		await gridHelper.RefreshAsync();				
+	}
 }

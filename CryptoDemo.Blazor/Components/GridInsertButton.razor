@@ -1,0 +1,21 @@
+﻿@typeparam TItem
+
+<div class="d-flex justify-content-between my-2">
+    <RadzenButton Icon="add_circle_outline" Text="Add" Click="@((args) => Grid.InsertRow(OnCreateItem.Invoke()))" />
+    
+    <div>
+        @ChildContent
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public RadzenGrid<TItem> Grid { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public Func<TItem> OnCreateItem { get; set; }
+}
