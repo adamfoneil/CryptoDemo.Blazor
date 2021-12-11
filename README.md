@@ -12,7 +12,9 @@ Historically, companies had little choice but to support JavaScript in addition 
 ## Why Not Blazor?
 Blazor has not really caught on, as far as I can tell, and is still relatively unproven in the market. JavaScript has a lot of developer mindshare, and C# fights an uphill battle to compete in that space. There's a lot of legacy code out there that won't "convert" to Blazor and must be re-written from scratch.
 
-Developing Blazor apps requires you, in effect, to commit to a component vendor. I've used Radzen because they have a free tier with a pretty capable suite. But I don't love every aspect of it, and with Radzen at least I've found it's hard to style and theme your app to my liking. 
+Developing Blazor apps requires you, in effect, to commit to a component vendor. I've used Radzen because they have a free tier with a pretty capable suite. But I don't love every aspect of it, and with Radzen at least I've found it's hard to style and theme your app to my liking.
+
+From a development experience point of view, the biggest annoyance I run into are occasional mysterious null reference exceptions.
 
 ## This Repo
 I made this to echo McNair's [CoinAPI](https://www.coinapi.io/) integration, and is barely more than "hello world" functionality. Still, if you've never worked with Blazor at all, there are few things here that will demo some core concepts.
