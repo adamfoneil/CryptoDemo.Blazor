@@ -10,7 +10,7 @@
     <RadzenButton Icon="search" Text="Search" Click="Search"/>
 </Field>
 
-<RadzenGrid TItem="SymbolInfo" Data="allSymbols" AllowPaging="true" class="mt-3">
+<RadzenGrid TItem="SymbolInfo" Data="allSymbols" AllowPaging="true" class="mt-3" @ref="grid">
     <Columns>
         <RadzenGridColumn TItem="SymbolInfo" Title="Symbol" Property="symbol_id"/>
         <RadzenGridColumn TItem="SymbolInfo" Title="Ask Price" Property="ask_price" Format="c2"/>
@@ -23,6 +23,7 @@
 </RadzenGrid>
 
 @code {
+    RadzenGrid<SymbolInfo> grid;
     string search;
     IEnumerable<SymbolInfo> allSymbols;
 
@@ -30,5 +31,6 @@
     {
         var filter = search.Split(", ", StringSplitOptions.RemoveEmptyEntries);
         allSymbols = await Client.GetSymbolsAsync(filter);
+        grid.GoToPage(0);
     }
 }
