@@ -21,10 +21,12 @@ The biggest annoyance I run into with Blazor is occasional mysterious null refer
 ## This Repo
 I made this to echo McNair's [CoinAPI](https://www.coinapi.io/) integration, and is barely more than "hello world" functionality. Still, if you've never worked with Blazor at all, there are few things here that will demo some core concepts.
 
-To clone and run this, you need an API key from [CoinAPI](https://www.coinapi.io/). I'll post a video walkthrough of how to set this in the project. To keep your key out of source control, you have to jump through a couple hoops.
+To clone and run this, you need an API key from CoinAPI. I'll post a video walkthrough of how to set this in the project. To keep your key out of source control, you have to jump through a couple hoops.
 
 ### CoinApiClient
 I used [Refit](https://github.com/reactiveui/refit) to implement my CoinAPI [client](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/CoinApiClient.cs). It gets added as a singleton at [startup](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L13) along with its corresponding [options](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L12) class [here](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/Models/CoinApiOptions.cs).
+
+The one method I implemented [GetQuptesAsync](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/Interfaces/ICoinApi.cs#L9) comes from [this endpoint](https://docs.coinapi.io/#current-data-get).
 
 Blazor uses dependency injection everywhere, so I [inject](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L2) it into the page where I want to use it.
 
