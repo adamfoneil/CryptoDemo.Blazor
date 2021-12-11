@@ -26,11 +26,6 @@
     string search;
     IEnumerable<SymbolInfo> allSymbols;
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();        
-    }
-
     async Task Search()
     {
         var filter = search.Split(", ", StringSplitOptions.RemoveEmptyEntries);
