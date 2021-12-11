@@ -1,7 +1,7 @@
 ﻿namespace CryptoDemo.Services.Models
 {
 
-    public class SymbolInfo
+    public class QuoteInfo
     {
         public string? symbol_id { get; set; }
         public DateTime time_exchange { get; set; }

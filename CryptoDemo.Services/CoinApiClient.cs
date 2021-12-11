@@ -22,10 +22,10 @@ namespace CryptoDemo.Services
             _logger = logger;
         }
 
-        public async Task<IEnumerable<SymbolInfo>> GetSymbolsAsync(params string[] filter)
+        public async Task<IEnumerable<QuoteInfo>> GetQuotesAsync(params string[] filter)
         {
-            _logger.LogInformation($"GetSymbolsAsync: {string.Join(", ", filter)}");
-            return await _api.GetSymbolsAsync(_options.Key, filter);
+            _logger.LogInformation($"GetQuotesAsync: {string.Join(", ", filter)}");
+            return await _api.GetQuotesAsync(_options.Key, filter);
         }
     }
 }

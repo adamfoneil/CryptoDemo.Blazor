@@ -10,11 +10,11 @@
     <RadzenButton Icon="search" Text="Search" Click="Search"/>
 </Field>
 
-<RadzenGrid TItem="SymbolInfo" Data="allSymbols" AllowPaging="true" class="mt-3" @ref="grid">
+<RadzenGrid TItem="QuoteInfo" Data="allSymbols" AllowPaging="true" class="mt-3" @ref="grid">
     <Columns>
-        <RadzenGridColumn TItem="SymbolInfo" Title="Symbol" Property="symbol_id"/>
-        <RadzenGridColumn TItem="SymbolInfo" Title="Ask Price" Property="ask_price" Format="c2"/>
-        <RadzenGridColumn TItem="SymbolInfo" Title="Last Trade">
+        <RadzenGridColumn TItem="QuoteInfo" Title="Symbol" Property="symbol_id"/>
+        <RadzenGridColumn TItem="QuoteInfo" Title="Ask Price" Property="ask_price" Format="c2"/>
+        <RadzenGridColumn TItem="QuoteInfo" Title="Last Trade">
             <Template Context="item">
                 <span>@(item.last_trade?.time_exchange.ToString("M/d/yy h:mm") ?? "n/a")</span>
             </Template>
@@ -23,14 +23,14 @@
 </RadzenGrid>
 
 @code {
-    RadzenGrid<SymbolInfo> grid;
+    RadzenGrid<QuoteInfo> grid;
     string search;
-    IEnumerable<SymbolInfo> allSymbols;
+    IEnumerable<QuoteInfo> allSymbols;
 
     async Task Search()
     {
         var filter = search.Split(", ", StringSplitOptions.RemoveEmptyEntries);
-        allSymbols = await Client.GetSymbolsAsync(filter);
+        allSymbols = await Client.GetQuotesAsync(filter);
         await grid.GoToPage(0);
     }
 }
