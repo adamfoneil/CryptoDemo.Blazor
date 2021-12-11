@@ -12,7 +12,9 @@ Historically, companies had little choice but to support JavaScript in addition 
 ## Why Not Blazor?
 Blazor has not really caught on, as far as I can tell, and is still relatively unproven in the market. JavaScript has a lot of developer mindshare, and C# fights an uphill battle to compete in that space. There's a lot of legacy code out there that won't "convert" to Blazor and must be re-written from scratch.
 
-Developing Blazor apps requires you, in effect, to commit to a component vendor. I've used Radzen because they have a free tier with a pretty capable suite. But I don't love every aspect of it, and with Radzen at least I've found it's hard to style and theme your app to my liking. 
+Developing Blazor apps requires you, in effect, to commit to a component vendor. I've used Radzen because they have a free tier with a pretty capable suite. But I don't love every aspect of it, and with Radzen at least I've found it's hard to style and theme your app to my liking.
+
+From a development experience point of view, the biggest annoyance I run into are occasional mysterious null reference exceptions.
 
 ## This Repo
 I made this to echo McNair's [CoinAPI](https://www.coinapi.io/) integration, and is barely more than "hello world" functionality. Still, if you've never worked with Blazor at all, there are few things here that will demo some core concepts.
@@ -20,7 +22,7 @@ I made this to echo McNair's [CoinAPI](https://www.coinapi.io/) integration, and
 To clone and run this, you need an API key from [CoinAPI](https://www.coinapi.io/). I'll post a video walkthrough of how to set this in the project. To keep your key out of source control, you have to jump through a couple hoops.
 
 ### CoinApiClient
-I used [Refit](https://github.com/reactiveui/refit) to implement my CoinAPI [client](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/CoinApiClient.cs). It gets added as a singleton at [startup](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L11) along with its corresponding [options](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L10) class [here](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/Models/CoinApiOptions.cs).
+I used [Refit](https://github.com/reactiveui/refit) to implement my CoinAPI [client](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/CoinApiClient.cs). It gets added as a singleton at [startup](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L13) along with its corresponding [options](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L12) class [here](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/Models/CoinApiOptions.cs).
 
 Blazor uses dependency injection everywhere, so I [inject](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L2) it into the page where I want to use it.
 
