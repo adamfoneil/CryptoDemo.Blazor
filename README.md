@@ -20,7 +20,7 @@ I made this to echo McNair's [CoinAPI](https://www.coinapi.io/) integration, and
 To clone and run this, you need an API key from [CoinAPI](https://www.coinapi.io/). I'll post a video walkthrough of how to set this in the project. To keep your key out of source control, you have to jump through a couple hoops.
 
 ### CoinApiClient
-I used [Refit](https://github.com/reactiveui/refit) to implement my CoinAPI [client](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/CoinApiClient.cs). It gets added as a singleton at [startup](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L11) along with its corresponding [options](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L10) class [here](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/Models/CoinApiOptions.cs).
+I used [Refit](https://github.com/reactiveui/refit) to implement my CoinAPI [client](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/CoinApiClient.cs). It gets added as a singleton at [startup](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L13) along with its corresponding [options](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L12) class [here](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/Models/CoinApiOptions.cs).
 
 Blazor uses dependency injection everywhere, so I [inject](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L2) it into the page where I want to use it.
 
