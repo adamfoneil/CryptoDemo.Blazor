@@ -17,11 +17,18 @@ Developing Blazor apps requires you, in effect, to commit to a component vendor.
 ## This Repo
 I made this to echo McNair's [CoinAPI](https://www.coinapi.io/) integration, and is barely more than "hello world" functionality. Still, if you've never worked with Blazor at all, there are few things here that will demo some core concepts.
 
-- To clone and run this, you need an API key from [CoinAPI](https://www.coinapi.io/).
+To clone and run this, you need an API key from [CoinAPI](https://www.coinapi.io/). I'll post a video walkthrough of how to set this in the project. To keep your key out of source control, you have to jump through a couple hoops.
 
+### CoinApiClient
+I used [Refit](https://github.com/reactiveui/refit) to implement my CoinAPI [client](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/CoinApiClient.cs). It gets added as a singleton at [startup](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L11) along with its corresponding [options](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L10) class [here](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/Models/CoinApiOptions.cs).
 
-- Startup and options [configuration](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Program.cs#L10-L11)
-- Very simple [CoinAPI]() integration 
+Blazor uses dependency injection everywhere, so I [inject](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L2) it into the page where I want to use it.
 
+### Blazor in a Nutshell
+Every piece of html markup in Blazor is implemented as a component (a .razor file), called a "Razor Component." A component with a **@page** directive, such as [this](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L1), can be navigated to in the browser, but is otherwise identical to other components.
 
-showing a [single method](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Services/Interfaces/ICoinApi.cs#L9)
+Input controls such as text boxes typically use a `@bind-` syntax to support two-way binding between the control and a C# variable or property, such as this [text box](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L7) which binds to this [variable](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L26).
+
+Blazor has rich event support. This [search button](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L10) calls this [event handler](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L29-L33), which executes a search for crypto exchange symbols. The search assigns this [allSymbols](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L32) variable, which is the data source for this [grid](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L13).
+
+For html productivity, you can create components that encapsulate repeated code. For example this [Field](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Pages/Symbols.razor#L6) element looks like an html tag. It's really a Razor Component [Field](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Components/Field.razor), which makes it easy for me to pair a label and some other [contained content](https://github.com/adamfoneil/CryptoDemo.Blazor/blob/master/CryptoDemo.Blazor/Components/Field.razor#L8).
