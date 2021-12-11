@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AO.Dapper.Repository.SqlServer" Version="1.2.1" />
     <PackageReference Include="Radzen.Blazor" Version="3.13.5" />
   </ItemGroup>
 

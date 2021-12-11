@@ -31,6 +31,6 @@
     {
         var filter = search.Split(", ", StringSplitOptions.RemoveEmptyEntries);
         allSymbols = await Client.GetSymbolsAsync(filter);
-        grid.GoToPage(0);
+        await grid.GoToPage(0);
     }
 }

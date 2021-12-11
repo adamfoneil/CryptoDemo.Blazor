@@ -1,0 +1,11 @@
+{
+  "Actions": {
+    "merge": [
+      {
+        "Type": 0,
+        "ObjectType": 1,
+        "ObjectName": "dbo.AppUser"
+      }
+    ]
+  }
+}
